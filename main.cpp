@@ -15,28 +15,28 @@ int main(){
 
     int num;
     int times = 0;
+    int size = 0;
     vector<int> info;
     unordered_map<int, int> countz;
 
     //adds all numbers to vector
     while(fin >> num){
-        info.push_back(num);
-    }
-
-    //to see how many times a number happens
-    for(int i = 0; i < info.size(); i++){
+        size++;
         //adds to map if not there
         if(countz.find(num) != countz.end()){
             countz.insert(pair<int, int>(num, times));
-            times++;
+            countz[num]++;
         }
-        for(int j = 0; j < info.size(); j++){
-            if(info[j] == countz[i]){
-                times++;
+        for(int j = 0; j < size; j++){
+            if(info[j] == countz[num]){
+                countz[num]++;
             }
         }
-        //print
-        fout << countz[i, times];
-        times = 0;
     }
+    //print
+        for(const auto &elem : countz){
+            fout << elem.first << " " << elem.second << endl;
+        }
+        fout << endl;
+        countz.clear();
 }
