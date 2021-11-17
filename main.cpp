@@ -19,6 +19,7 @@ int main(){
     fout.open("outfile");
 
     int num;
+    int pos = 0;
     int times = 0;
     int size = 0;
     vector<int> info;
@@ -32,18 +33,19 @@ int main(){
     for(int i = 0; i < info.size(); i++){
         //adds to map if not there
         if(countz.find(info[i]) == countz.end()){
-            countz.insert(pair<int, int>(num, times));
-            countz[info[i]]++;
+            countz.insert(make_pair(info[i], 0));
         }
-        //increases value of key if there again
-        for(int j = 0; j < info.size(); j++){
-            if(info[j] == countz[info[i]]){
-                countz[info[i]]++;
-            }
-        }
+        countz[info[i]]++;
+    }
+    auto a = new int [countz.size()][2];
+
+    for(const auto &elem : countz){
+        a[pos][0] = elem.first;
+        a[pos][1] = elem.second;
+        pos++;
+    }
     //print
-        for(const auto &elem : countz){
-            fout << elem.first << " " << elem.second << endl;
-        }
+    for(int i = countz.size() - 1; i >= 0; i -= 1){
+        fout << a[i][0] << " " << a[i][1] << endl;
     }
 }
