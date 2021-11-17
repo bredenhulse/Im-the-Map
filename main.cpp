@@ -21,22 +21,24 @@ int main(){
 
     //adds all numbers to vector
     while(fin >> num){
-        size++;
+        info.push_back(num);
+    }
+
+    for(int i = 0; i < info.size(); i++){
         //adds to map if not there
-        if(countz.find(num) != countz.end()){
+        if(countz.find(info[i]) == countz.end()){
             countz.insert(pair<int, int>(num, times));
-            countz[num]++;
+            countz[info[i]]++;
         }
-        for(int j = 0; j < size; j++){
-            if(info[j] == countz[num]){
-                countz[num]++;
+        //increases value of key if there again
+        for(int j = 0; j < info.size(); j++){
+            if(info[j] == countz[info[i]]){
+                countz[info[i]]++;
             }
         }
-    }
     //print
         for(const auto &elem : countz){
             fout << elem.first << " " << elem.second << endl;
         }
-        fout << endl;
-        countz.clear();
+    }
 }
