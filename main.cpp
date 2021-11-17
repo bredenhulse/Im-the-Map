@@ -1,3 +1,8 @@
+/*
+Name: Breden Hulse
+Class: Computer Science 2
+Description: Will say how many times a number appears.
+*/
 #include <unordered_map>
 #include <fstream>
 #include <iostream>
